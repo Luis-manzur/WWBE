@@ -3,7 +3,10 @@
 #Django
 from django.db import models
 
-class Type(models.Model):
+#Model
+from utils.models import WWBModel
+
+class Type(WWBModel):
     """Accommodation type model.
     """
     name = models.CharField(max_length=30)

@@ -7,9 +7,10 @@ from django.db import models
 #Models
 from accommodations.models.accommodations import Accommodation
 from users.models import User
+from utils.models import WWBModel
 
-class Calification(models.Model):
-    accommodation = models.ForeignKey(Accommodation, on_delete=models.CASCADE)
+class Calification(WWBModel):
+    accommodation = models.ForeignKey(Accommodation, related_name='califications', on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     rating = models.FloatField()
     message = models.CharField(max_length=255)

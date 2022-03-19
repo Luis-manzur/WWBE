@@ -3,6 +3,9 @@
 #Django
 from django.db import models
 
+#Models
+from utils.models import WWBModel
+
 class Country(models.Model):
     """Country model.
     """

@@ -6,6 +6,9 @@ from django.db import models
 #Utilities
 from utils.models import WWBModel
 
+#Cloudinary
+from cloudinary.models import CloudinaryField
+
 class Profile(WWBModel):
     """Profile model,
 
@@ -17,12 +20,7 @@ class Profile(WWBModel):
         on_delete=models.CASCADE
     )
 
-    picture = models.ImageField(
-        'profile picture',
-        upload_to='users/pictures/',
-        blank=True,
-        null=True
-    )
+    picture = CloudinaryField('image', blank=True)
 
     #Stats
     accommodations_booked = models.PositiveIntegerField(default=0)

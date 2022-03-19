@@ -18,8 +18,8 @@ class CustomUserAdmin(UserAdmin):
         ProfileInline,
     ]
 
-    list_display = ('email','username', 'first_name','last_name', 'is_staff', 'is_active')
+    list_display = ('email','username', 'first_name','last_name', 'is_staff', 'is_active', 'is_verified')
     list_filter = ('is_active', 'is_staff', 'created', 'modified')
-
+    list_editable = ('is_verified',)
 
 admin.site.register(User, CustomUserAdmin)

@@ -2,8 +2,9 @@
 
 #Django
 from django.db import models
+from utils.models import WWBModel
 
-class City(models.Model):
+class City(WWBModel):
     """City model.
     """
     name = models.CharField(max_length=30)

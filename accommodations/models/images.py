@@ -7,7 +7,7 @@ from django.db import models
 from utils.models import WWBModel
 
 
-class Image(models.Model):
+class Image(WWBModel):
     """Accommodation image model"""
     image = models.ImageField()
-    accommodations = models.ForeignKey('accommodations.accommodation', on_delete=models.CASCADE, null=True)
+    accommodations = models.ForeignKey('accommodations.accommodation', related_name='images', on_delete=models.CASCADE)

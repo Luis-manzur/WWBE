@@ -6,11 +6,15 @@ from django.db import models
 
 #Models
 from accommodations.models.plans import Plan
+from utils.models import WWBModel
 
-class Room(models.Model):
+#Cloudinary
+from cloudinary.models import CloudinaryField
+
+class Room(WWBModel):
     name = models.CharField(max_length=30)
     description = models.CharField(max_length=30)
-    image = models.ImageField(null=False)
+    image = CloudinaryField('image')
     beds = models.IntegerField()
     capacity = models.IntegerField()
-    accommodation = models.ForeignKey('accommodations.accommodation', on_delete=models.CASCADE)
+    accommodation = models.ForeignKey('accommodations.accommodation', related_name='rooms', on_delete=models.CASCADE)

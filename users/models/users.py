@@ -36,7 +36,7 @@ class User(WWBModel, AbstractUser):
     REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
 
     is_active = models.BooleanField(
-        'Avtive status',
+        'Active status',
         default=True,
         help_text=(
             'Hellp easily distinguish users and perform queries.'
