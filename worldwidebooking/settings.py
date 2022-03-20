@@ -99,13 +99,17 @@ AUTH_USER_MODEL = 'users.User'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-import dj_database_url
-from decouple import config
-DATABASE = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
-}
+
+DATABASES = {
+     'default':{
+         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+         'NAME': 'WorldWideBooking',
+         'USER': 'postgres',
+         'PASSWORD': 'WWBE',
+         'HOST': 'localhost',
+         'PORT': '5432',
+     }
+ }
 
 
 
@@ -187,12 +191,8 @@ CACHES = {
 
 
 # Cloudinary
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': dj_database_url.config(
-        default=config('CLOUD_NAME')),
-    'API_KEY': dj_database_url.config(
-        default=config('API_KEY')),
-    'API_SECRET': dj_database_url.config(
-        default=config('API_SECRET')),
-}
-DEFAULT_FILE_STORAGE='cloudinary_storage.storage.MediaCloudinaryStorage'
+cloudinary.config( 
+  cloud_name = "hj93dzmcd", 
+  api_key = "444969331429671", 
+  api_secret = "63wwedH6YAo4JmWjcYa2eR46wjk" 
+)
