@@ -31,9 +31,9 @@ SECRET_KEY = env('DJANGO_SECRET_KEY',
 SECRET_KEY = 'django-insecure-x+oa7ok9tsks#n2y$mlxr3cgk%%w@pbh(-te64j9_mj+58gsf3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -99,16 +99,14 @@ AUTH_USER_MODEL = 'users.User'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('DATABASE_NAME'),
-        'USER': os.environ.get('DATABASE_USER'),
-        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
-        'HOST': os.environ.get('DATABASE_HOST'),
-        'PORT': os.environ.get('DATABASE_PORT')
-    }
+import dj_database_url
+from decouple import config
+DATABASE = {
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
 }
+
 
 
 # Password validation
@@ -189,8 +187,12 @@ CACHES = {
 
 
 # Cloudinary
-cloudinary.config(
-    cloud_name="hj93dzmcd",
-    api_key="444969331429671",
-    api_secret="63wwedH6YAo4JmWjcYa2eR46wjk"
-)
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': dj_database_url.config(
+        default=config('CLOUD_NAME')),
+    'API_KEY': dj_database_url.config(
+        default=config('API_KEY')),
+    'API_SECRET': dj_database_url.config(
+        default=config('API_SECRET')),
+}
+DEFAULT_FILE_STORAGE='cloudinary_storage.storage.MediaCloudinaryStorage'
