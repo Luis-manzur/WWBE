@@ -104,8 +104,8 @@ DATABASES = {
      'default':{
          'ENGINE': 'django.db.backends.postgresql_psycopg2',
          'NAME': 'WorldWideBooking',
-         'USER': 'postgres',
-         'PASSWORD': 'WWBE',
+         'USER': 'admin',
+         'PASSWORD': 'WWBE1234.',
          'HOST': 'localhost',
          'PORT': '5432',
      }
