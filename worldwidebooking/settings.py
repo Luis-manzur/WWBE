@@ -103,7 +103,7 @@ AUTH_USER_MODEL = 'users.User'
 DATABASES = {
      'default':{
          'ENGINE': 'django.db.backends.postgresql_psycopg2',
-         'NAME': 'WorldWideBooking',
+         'NAME': 'worldwidebooking',
          'USER': 'admin',
          'PASSWORD': 'WWB1234.',
          'HOST': 'localhost',
