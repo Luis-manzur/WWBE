@@ -67,7 +67,7 @@ class UserViewSet(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, viewsets.G
         serializer.is_valid(raise_exception=True)
         serializer.save()
         data = {
-            'message': 'Congratulations, now go share some rides!'
+            'message': 'Congratulations, now go visit the world!'
         }
         return Response(data, status=status.HTTP_200_OK)
 

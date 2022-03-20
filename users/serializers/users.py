@@ -1,6 +1,7 @@
 """Users Serializers"""
 
 #Django
+from django.shortcuts import render
 from django.core.mail import EmailMessage
 from django.contrib.auth import authenticate, password_validation
 from django.core.validators import RegexValidator
@@ -112,7 +113,7 @@ class UserSignUpSerializer(serializers.Serializer):
         data.pop('password_confirmation')
         user = User.objects.create_user(**data, is_verified=False)
         Profile.objects.create(user=user)
-        self.send_confirmation_email.delay(user_pk=user.pk)
+        self.send_confirmation_email(user_pk=user.pk)
         return user
 
     def gen_verification_token(self,user):
@@ -124,20 +125,19 @@ class UserSignUpSerializer(serializers.Serializer):
             'type': 'email_confirmation'
         }
         token = jwt.encode(payload, settings.SECRET_KEY, algorithm='HS256')
-        return token.decode()
+        return token
     
     def send_confirmation_email(self, user_pk):
         """Send account verification link to given user."""
         user = User.objects.get(pk=user_pk)
         verification_token = self.gen_verification_token(user)
-        subject = 'Welcome @{}! Verify your account to start using Comparte Ride'.format(user.username)
+        subject = 'Welcome @{}! Verify your account to start using World Wide Booking'.format(user.username)
         from_email =  settings.EMAIL_HOST_USER
         content = render_to_string(
             'emails/account_verification.html',
             {'token': verification_token, 'user': user}
         )
         msg = EmailMessage(subject, content, from_email, [user.email])
-        msg.attach_alternative(content, "text/html")
         msg.send()
 
 class AccountVerificationSerializer(serializers.Serializer):

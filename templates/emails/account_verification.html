@@ -1,12 +1,12 @@
-<p>Welcome @{{ user.username }}!</p>
+{% autoescape off %}
+Welcome @{{ user.username }}!
 
-<p>
-    Before you start using <b>World Wide Booking</b> we need you to do one last thing.
-    Please visit the following <a href="">link</a> and enter this code
-</p>
 
-<p style="text-align:center">
-    <code style="text-align:center">
-        {{ token }}
-    </code>
-</p>
+    Before you start using World Wide Booking we need you to do one last thing.
+    Please visit the following link and enter this code
+
+
+
+        Code: {{ token }}
+
+{% endautoescape %}
