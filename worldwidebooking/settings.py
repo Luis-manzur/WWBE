@@ -47,12 +47,20 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    # 'rest_auth',
     'corsheaders',
     'users',
     'accommodations',
     'payments',
     'reservations',
     'califications',
+    'django.contrib.sites',
+    # 'allauth',
+    # 'allauth.account',
+    # 'rest_auth.registration',
+    # 'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.facebook',
+    # 'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -103,24 +111,23 @@ AUTH_USER_MODEL = 'users.User'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 
-# DATABASES = {
-#   'default': {
-#     'ENGINE': 'django.db.backends.sqlite3',
-#     'NAME': 'mydatabase', # This is where you put the name of the db file.
-#   }
-# }
-
 DATABASES = {
-     'default':{
-         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-         'NAME': 'worldwidebooking',
-         'USER': 'admin',
-         'PASSWORD': 'WWB1234.',
-         'HOST': 'localhost',
-         'PORT': '5432',
-     }
- }
+  'default': {
+    'ENGINE': 'django.db.backends.sqlite3',
+    'NAME': 'mydatabase', # This is where you put the name of the db file.
+  }
+}
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'worldwidebooking',
+#         'USER': 'admin',
+#         'PASSWORD': 'WWB1234.',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # Password validation
@@ -183,11 +190,11 @@ EMAIL_HOST_PASSWORD = 'WWB1234.'
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
     'DEFAULT_AUTHENTICATION_CLASSES': (
-       'rest_framework.authentication.TokenAuthentication',
-   ),
-   'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAdminUser'
-   ),
+    ),
 }
 
 # Cache
@@ -200,13 +207,15 @@ CACHES = {
 
 
 # Cloudinary
-cloudinary.config( 
-  cloud_name = "universidad-metropolitana", 
-  api_key = "564521924194823", 
-  api_secret = "ByxPZO21bTU1tEsJw5xCyw2x4D0" 
+cloudinary.config(
+    cloud_name="universidad-metropolitana",
+    api_key="564521924194823",
+    api_secret="ByxPZO21bTU1tEsJw5xCyw2x4D0"
 )
 
 
 CORS_ALLOWED_ORIGINS = [
-"http://localhost:3000",
+    "http://localhost:3000",
 ]
+
+SITE_ID = 1
