@@ -1,10 +1,12 @@
 """Accommodations views."""
 
 #DjangoREST Framework
+from unicodedata import name
 from rest_framework import viewsets, mixins, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from accommodations.models.cities import City
 
 #Serializers
 from accommodations.serializers import AccommodationModelSeializer
@@ -25,21 +27,20 @@ class AccommodationViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, vie
     serializer_class = AccommodationModelSeializer
 
     #Filters
-    filter_backends = (SearchFilter, OrderingFilter, DjangoFilterBackend)
-    search_fields = ('slug_name', 'name', 'country', 'city')
+    filter_backends = [SearchFilter]
+    search_fields = ['city']
     ordering = ('-rating')
 
-    def get_permissions(self):
-        """Assign permissions based on actions"""
-        permissions = [IsAuthenticated]
-        return [permission()for permission in permissions]
-
     def get_queryset(self):
-        """Restrict list to public only"""
-
+        """
+        Optionally restricts the returned purchases to a given user,
+        by filtering against a `username` query parameter in the URL.
+        """
         queryset = Accommodation.objects.all()
-        if self.action == 'list':
-            return queryset.all()
+        city = self.request.query_params.get('city')
+        city_id = City.objects.filter(name=city).first()
+        if city_id:
+            queryset = Accommodation.objects.filter(city=city_id.id)
         return queryset
 
     @action(detail=True, methods=['POST'])

@@ -30,5 +30,5 @@ class AccommodationModelSeializer(serializers.ModelSerializer):
         """Meta class.
         define the db model its going to use and wich fields are going to be displayed"""
         model=Accommodation
-        fields = ('slug_name', 'name', 'principal_image', 'address', 'city', 'images', 'services', 'type', 'plans', 'califications', 'rooms')
+        fields = ('slug_name', 'name', 'principal_image', 'address', 'rating', 'city', 'images', 'services', 'type', 'plans', 'califications', 'rooms')
         depth  = 1
