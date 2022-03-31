@@ -103,6 +103,13 @@ AUTH_USER_MODEL = 'users.User'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 
+# DATABASES = {
+#   'default': {
+#     'ENGINE': 'django.db.backends.sqlite3',
+#     'NAME': 'mydatabase', # This is where you put the name of the db file.
+#   }
+# }
+
 DATABASES = {
      'default':{
          'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -174,7 +181,13 @@ EMAIL_HOST_USER = 'noreplyworldwidebooking@gmail.com'
 EMAIL_HOST_PASSWORD = 'WWB1234.'
 
 REST_FRAMEWORK = {
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+       'rest_framework.authentication.TokenAuthentication',
+   ),
+   'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAdminUser'
+   ),
 }
 
 # Cache

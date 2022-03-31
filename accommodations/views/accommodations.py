@@ -1,7 +1,6 @@
 """Accommodations views."""
 
 #DjangoREST Framework
-from unicodedata import name
 from rest_framework import viewsets, mixins, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -35,15 +34,15 @@ class AccommodationViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, vie
     search_fields = ['city']
     ordering = ('-rating')
 
-    # def get_permissions(self):
-    #     """Addign permissiond based on actions"""
+    def get_permissions(self):
+        """Addign permissiond based on actions"""
 
-    #     if self.action in ['rate', 'reserve']:
-    #         permissions = [IsAuthenticated, IsAccountOwner]
-    #     else:
-    #         permissions = [AllowAny,]
+        if self.action in ['rate', 'reserve']:
+            permissions = [IsAuthenticated]
+        else:
+            permissions = [AllowAny,]
 
-    #     return [permission() for permission in permissions]
+        return [permission() for permission in permissions]
 
     def get_queryset(self):
         """

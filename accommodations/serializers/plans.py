@@ -6,6 +6,7 @@ from rest_framework import serializers
 #Model
 from accommodations.models import Plan
 
+
 class PlanModelSeializer(serializers.ModelSerializer):
     """Plan model serializer"""
 
