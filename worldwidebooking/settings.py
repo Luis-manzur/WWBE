@@ -104,11 +104,15 @@ AUTH_USER_MODEL = 'users.User'
 
 
 DATABASES = {
-  'default': {
-    'ENGINE': 'django.db.backends.sqlite3',
-    'NAME': 'mydatabase', # This is where you put the name of the db file.
-  }
-}
+     'default':{
+         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+         'NAME': 'worldwidebooking',
+         'USER': 'admin',
+         'PASSWORD': 'WWB1234.',
+         'HOST': 'localhost',
+         'PORT': '5432',
+     }
+ }
 
 
 
