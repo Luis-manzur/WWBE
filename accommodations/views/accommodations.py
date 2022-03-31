@@ -20,6 +20,10 @@ from django_filters.rest_framework import DjangoFilterBackend
 #Models
 from accommodations.models import Accommodation, accommodations
 
+#Permissions
+from rest_framework.permissions import IsAuthenticated, AllowAny
+from users.permissions import IsAccountOwner
+
 class AccommodationViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
     """Accommodation view set."""
 
@@ -30,6 +34,16 @@ class AccommodationViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, vie
     filter_backends = [SearchFilter]
     search_fields = ['city']
     ordering = ('-rating')
+
+    # def get_permissions(self):
+    #     """Addign permissiond based on actions"""
+
+    #     if self.action in ['rate', 'reserve']:
+    #         permissions = [IsAuthenticated, IsAccountOwner]
+    #     else:
+    #         permissions = [AllowAny,]
+
+    #     return [permission() for permission in permissions]
 
     def get_queryset(self):
         """

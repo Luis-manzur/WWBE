@@ -39,29 +39,6 @@ class CreateReservationSerializer(serializers.ModelSerializer):
         fields = ('plan', 'entrance_date', 'departure_date', 'user')
 
 
-    def validate_entrance_date(self, data):
-        """Validate.
-
-        Verify that the dates introduced are valid.
-        """
-
-        min_date = timezone.now()
-        if data['entrance_date'] < min_date:
-            raise serializers.ValidationError('Entrance date must be from tomorrow onwards')
-
-        return data
-    
-    def validate_entrance_date(self, data):
-        """Validate.
-
-        Verify that the dates introduced are valid.
-        """
-
-        if data['entrance_date'] > data['departure_date']:
-            raise serializers.ValidationError('Entrance date must be from tomorrow onwards')
-
-        return data
-
 
     def create(self, data):
         """Create reservation."""
