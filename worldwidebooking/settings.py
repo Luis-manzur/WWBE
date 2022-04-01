@@ -16,7 +16,7 @@ import cloudinary.uploader
 import cloudinary.api
 import os
 import environ
-import django_heroku
+# import django_heroku
 
 env = environ.Env()
 
@@ -32,7 +32,7 @@ SECRET_KEY = env('DJANGO_SECRET_KEY',
 SECRET_KEY = 'django-insecure-x+oa7ok9tsks#n2y$mlxr3cgk%%w@pbh(-te64j9_mj+58gsf3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    # 'rest_auth',
     'corsheaders',
     'users',
     'accommodations',
@@ -56,17 +55,10 @@ INSTALLED_APPS = [
     'reservations',
     'califications',
     'django.contrib.sites',
-    # 'allauth',
-    # 'allauth.account',
-    # 'rest_auth.registration',
-    # 'allauth.socialaccount',
-    # 'allauth.socialaccount.providers.facebook',
-    # 'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -120,16 +112,6 @@ DATABASES = {
   }
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'worldwidebooking',
-#         'USER': 'admin',
-#         'PASSWORD': 'WWB1234.',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
 
 
 # Password validation
