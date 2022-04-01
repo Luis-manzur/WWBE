@@ -16,7 +16,6 @@ import cloudinary.uploader
 import cloudinary.api
 import os
 import environ
-import django_heroku
 
 env = environ.Env()
 
@@ -32,7 +31,7 @@ SECRET_KEY = env('DJANGO_SECRET_KEY',
 SECRET_KEY = 'django-insecure-x+oa7ok9tsks#n2y$mlxr3cgk%%w@pbh(-te64j9_mj+58gsf3'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -202,4 +201,3 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
 
-django_heroku.settings(locals())
