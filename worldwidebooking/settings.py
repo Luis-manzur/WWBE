@@ -55,7 +55,6 @@ INSTALLED_APPS = [
     'payments',
     'reservations',
     'califications',
-
 ]
 
 MIDDLEWARE = [
