@@ -201,6 +201,9 @@ cloudinary.config(
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "https://worldwidebooking-3b9ac.web.app/"
+    "https://worldwidebooking-3b9ac.web.app/",
+    "worldwidebooking-3b9ac.web.app/",
+    "https://worldwidebooking-3b9ac.firebaseapp.com",
+    "worldwidebooking-3b9ac.firebaseapp.com",
 ]
 
