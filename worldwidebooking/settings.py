@@ -16,6 +16,7 @@ import cloudinary.uploader
 import cloudinary.api
 import os
 import environ
+import django_heroku
 
 env = environ.Env()
 
@@ -65,6 +66,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -218,4 +220,4 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 ]
 
-SITE_ID = 1
+django_heroku.settings(locals())
